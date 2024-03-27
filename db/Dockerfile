@@ -1,8 +1,10 @@
 # 0. ubuntu:22.04をベースにする
 FROM ubuntu:22.04
 
-# 1. command_tutorialディレクトリをルートディレクトリに作成して
-#    そのなかにfirstvi.txtを作成
+# 1. dailyreportsystemapplication_tutorialディレクトリをルートディレクトリに作成して
+#    そのなかにreadme.txtを作成
+RUN mkdir /dailyreportsystemapplication_container
+RUN mkdir /dailyreportsystemapplication_container/readme.txt
 
 # 2. viのインストール
 RUN apt update
@@ -30,10 +32,6 @@ RUN mysqld_safe & sleep 5 && cat /tmp/mysql_setup.sql | mysql
 EXPOSE 3306
 
 # 7. 一般ユーザmyuserの作成およびmyuserでログイン
-RUN apt -y install sudo
-RUN useradd -s /bin/bash -G sudo -m myuser
-RUN echo "myuser:mypass" | chpasswd
-RUN echo "root:rootpass" | chpasswd
 
 # 8. 起動時コマンドの指定
 COPY startup.sh /startup.sh
